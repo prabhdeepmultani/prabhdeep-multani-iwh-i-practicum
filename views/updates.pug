@@ -1,0 +1,102 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title= title || "Create New LOTR Character"
+        link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css")
+        script(src="https://cdn.jsdelivr.net/npm/toastify-js")
+        script(src="https://cdn.tailwindcss.com")
+        link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css")
+        link(href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap", rel="stylesheet")
+        style.
+            .bg-parchment {
+                background-color: #f5f0e1;
+                background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23dccebe' fill-opacity='0.2' fill-rule='evenodd'/%3E%3C/svg%3E");
+            }
+            .font-elvish {
+                font-family: 'Cinzel', serif;
+            }
+            .form-input {
+                @apply shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight;
+                @apply focus:outline-none focus:shadow-outline focus:ring-2 focus:ring-amber-500 focus:border-transparent;
+                @apply border-amber-300 transition duration-200;
+                background-color: rgba(255, 255, 255, 0.7);
+            }
+            
+    body(class="bg-parchment min-h-screen")
+        div(class="container mx-auto px-4 py-8 max-w-6xl")
+            //- Header
+            div(class="text-center mb-8")
+                h1(class="text-3xl font-bold mb-2 font-elvish text-amber-900") Insert New LOTR Character
+                p(class="text-amber-700 italic") Record the tales of those who shaped the destiny of Middle-earth
+            
+            //- Main Form Card
+            form(
+                action="/update-cobj" 
+                method="POST" 
+                class="max-w-lg mx-auto bg-white bg-opacity-90 p-6 rounded-lg shadow-lg border border-amber-200"
+            )
+                //- Character Name
+                div(class="mb-4")
+                    label(for="name" class="block text-gray-700 text-sm font-bold mb-2 font-elvish") Character Name
+                    input#name(
+                        type="text"
+                        name="name"
+                        required
+                        class="shadow appearance-none border border-amber-300 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-amber-500"
+                        placeholder="e.g. Aragorn, Gandalf, Galadriel"
+                    )
+                
+                //- Race (kept as original input)
+                div(class="mb-4")
+                    label(for="race" class="block text-gray-700 text-sm font-bold mb-2 font-elvish") Race
+                    input#race(
+                        type="text"
+                        name="race"
+                        required
+                        class="shadow appearance-none border border-amber-300 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-amber-500"
+                        placeholder="e.g. Human, Elf, Dwarf, Hobbit"
+                    )
+                    //- Comment preserved as in original
+                    //TODOO
+                
+                //- Biography
+                div(class="mb-6")
+                    label(for="biography" class="block text-gray-700 text-sm font-bold mb-2 font-elvish") Biography
+                    textarea#biography(
+                        name="biography"
+                        required
+                        class="shadow appearance-none border border-amber-300 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-amber-500 h-40"
+                        placeholder="Tell the character's story - their deeds, allegiances, and role in the events of Middle-earth..."
+                    )
+                
+                //- Form Actions
+                div(class="flex items-center justify-between mt-6")
+                    button(
+                        type="submit"
+                        class="bg-amber-700 hover:bg-amber-800 text-white font-bold py-2 px-6 rounded focus:outline-none focus:shadow-outline transition duration-200 flex items-center"
+                    )
+                        i(class="fas fa-feather mr-2")
+                        span Create Character
+                    
+                    a(
+                        href="/" 
+                        class="inline-block align-baseline font-bold text-sm text-blue-600 hover:text-blue-800 transition duration-200"
+                    ) Return to the homepage
+            
+            //- Lore Quote
+            div(class="mt-8 text-center text-sm text-amber-800 italic")
+                | "Even the smallest person can change the course of the future." — Galadriel
+            
+            //- Error Handling
+            if error
+                script.
+                    Toastify({
+                        text: '#{error}',
+                        duration: 3000,
+                        close: true,
+                        gravity: "top",
+                        position: "right",
+                        style: { background: "#EF4444" }
+                    }).showToast();
